@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Breast Cancer Predictor</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/webp" href="../static/images/ribbon.webp">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Nunito:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../static/css/styles.css">
+</head>
+<body>
+
+<div class="page-wrapper">
+
+    <header class="hero">
+        <img class="ribbon-icon" src="../static/images/ribbon.webp" alt="Pink Ribbon">
+        <h1 class="hero-title">Breast Cancer Predictor</h1>
+        <p class="hero-subtitle">Prediction tool for breast cancer detection</p>
+    </header>
+
+    <div class="info-banner">
+        <span class="info-banner-icon">🔬</span>
+        <p>
+            Enter the values obtained from the tumor analysis.
+            The model will classify the tumor as <strong>benign</strong> or <strong>malignant</strong>.
+        </p>
+    </div>
+
+    <form class="form-card" id="predictionForm" novalidate>
+
+        <div class="section-header">
+            <div class="section-icon">📐</div>
+            <div>
+                <div class="section-title">Worst Tumor Measurements</div>
+                <div class="section-desc">Most extreme values recorded in the image analysis</div>
+            </div>
+        </div>
+
+        <div class="form-grid">
+            <div class="form-group">
+                <label class="form-label" for="radius_worst">
+                    Radius Worst
+                    <span class="tooltip-trigger" data-tip="Largest mean distance from center to perimeter points">?</span>
+                </label>
+                <input class="form-input" type="number" id="radius_worst" name="radius_worst"
+                       placeholder="e.g. 16.27" step="0.01" min="0" required>
+                <div class="form-hint">Typical range: 7.93 – 36.04</div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="texture_worst">
+                    Texture Worst
+                    <span class="tooltip-trigger" data-tip="Highest standard deviation of gray-scale values">?</span>
+                </label>
+                <input class="form-input" type="number" id="texture_worst" name="texture_worst"
+                       placeholder="e.g. 25.68" step="0.01" min="0" required>
+                <div class="form-hint">Typical range: 12.02 – 49.54</div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="perimeter_worst">
+                    Perimeter Worst
+                </label>
+                <input class="form-input" type="number" id="perimeter_worst" name="perimeter_worst"
+                       placeholder="e.g. 107.30" step="0.01" min="0" required>
+                <div class="form-hint">Typical range: 50.41 – 251.20</div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="area_worst">
+                    Area Worst
+                </label>
+                <input class="form-input" type="number" id="area_worst" name="area_worst"
+                       placeholder="e.g. 880.60" step="0.01" min="0" required>
+                <div class="form-hint">Typical range: 185.20 – 4254.00</div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="smoothness_worst">
+                    Smoothness Worst
+                    <span class="tooltip-trigger" data-tip="Highest local variation in radius lengths">?</span>
+                </label>
+                <input class="form-input" type="number" id="smoothness_worst" name="smoothness_worst"
+                       placeholder="e.g. 0.1323" step="0.0001" min="0" required>
+                <div class="form-hint">Typical range: 0.071 – 0.223</div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="section-header">
+            <div class="section-icon">🧬</div>
+            <div>
+                <div class="section-title">Compactness & Concavity</div>
+                <div class="section-desc">Cell shape and structure characteristics</div>
+            </div>
+        </div>
+
+        <div class="form-grid">
+            <div class="form-group">
+                <label class="form-label" for="compactness_mean">
+                    Compactness Mean
+                    <span class="tooltip-trigger" data-tip="(perimeter² / area) - 1.0">?</span>
+                </label>
+                <input class="form-input" type="number" id="compactness_mean" name="compactness_mean"
+                       placeholder="e.g. 0.1043" step="0.0001" min="0" required>
+                <div class="form-hint">Typical range: 0.019 – 0.345</div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="compactness_worst">
+                    Compactness Worst
+                    <span class="tooltip-trigger" data-tip="Most extreme compactness value">?</span>
+                </label>
+                <input class="form-input" type="number" id="compactness_worst" name="compactness_worst"
+                       placeholder="e.g. 0.2548" step="0.0001" min="0" required>
+                <div class="form-hint">Typical range: 0.027 – 1.058</div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="concavity_mean">
+                    Concavity Mean
+                    <span class="tooltip-trigger" data-tip="Severity of concave portions of the contour">?</span>
+                </label>
+                <input class="form-input" type="number" id="concavity_mean" name="concavity_mean"
+                       placeholder="e.g. 0.0887" step="0.0001" min="0" required>
+                <div class="form-hint">Typical range: 0.000 – 0.427</div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="concavity_worst">
+                    Concavity Worst
+                    <span class="tooltip-trigger" data-tip="Most extreme concavity value of the contour">?</span>
+                </label>
+                <input class="form-input" type="number" id="concavity_worst" name="concavity_worst"
+                       placeholder="e.g. 0.2722" step="0.0001" min="0" required>
+                <div class="form-hint">Typical range: 0.000 – 1.252</div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="concave_points_worst">
+                    Concave Points Worst
+                    <span class="tooltip-trigger" data-tip="Highest number of concave portions of the contour">?</span>
+                </label>
+                <input class="form-input" type="number" id="concave_points_worst" name="concave_points_worst"
+                       placeholder="e.g. 0.1146" step="0.0001" min="0" required>
+                <div class="form-hint">Typical range: 0.000 – 0.291</div>
+            </div>
+        </div>
+
+        <div class="section-divider"></div>
+
+        <div class="submit-wrapper">
+            <button class="btn-submit" type="submit" id="submitBtn">
+                <span class="btn-text">Analyze Sample</span>
+                <span class="spinner"></span>
+            </button>
+        </div>
+    </form>
+
+    <footer class="footer">
+        <p>
+            <span class="footer-ribbon">🎀</span>
+            Breast Cancer Predictor
+        </p>
+    </footer>
+</div>
+
+<div class="result-overlay" id="resultOverlay">
+    <div class="result-card">
+        <button class="result-close" id="resultCloseX" aria-label="Close">✕</button>
+        <div class="result-icon" id="resultIcon">
+            <img id="resultIconImg" src="" alt="" style="width:100%;height:100%;object-fit:contain;">
+        </div>
+        <div class="result-diagnosis" id="resultDiagnosis"></div>
+        <div class="result-confidence" id="resultConfidence"></div>
+        <p class="result-explanation" id="resultExplanation"></p>
+        <div class="result-disclaimer">
+            ⚠️ This tool is an <strong>academic project</strong> and does not replace professional medical diagnosis. Always consult a specialist.<br><br>
+            <a href="https://www.cancer.org/cancer/types/breast-cancer/about/what-is-breast-cancer.html" target="_blank" rel="noopener" style="color:var(--pink-600);font-weight:600;">Learn more → American Cancer Society</a>
+        </div>
+        <button class="btn-close-result" id="resultCloseBtn">Close</button>
+    </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="../static/js/app.js"></script>
+
+</body>
+</html>
