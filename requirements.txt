@@ -7,3 +7,4 @@ kagglehub[pandas-datasets]
 fastapi
 uvicorn[standard]
 joblib
+xgboost
