@@ -18,12 +18,17 @@ frontend/
 
 The frontend expects the backend API to be running at `http://localhost:8000`.
 
-1. **Start the backend**:
+1. **Navigate to the `frontend` directory:**
+   ```bash
+   cd frontend
+   ```
+
+3. **Start the backend**:
    ```bash
    uvicorn api:app --reload
    ```
 
-2. **Open the UI** — serve the frontend with any static file server, for example:
+4. **Open the UI** — serve the frontend with any static file server, for example:
    ```bash
    # Python
    python -m http.server 5500
@@ -32,7 +37,7 @@ The frontend expects the backend API to be running at `http://localhost:8000`.
    npx serve
    ```
 
-3. Navigate to `http://localhost:5500` and enter the tumor measurements to get a prediction.
+5. Navigate to `http://localhost:5500` and enter the tumor measurements to get a prediction.
 
 > **Note:** The browser must be able to reach `http://localhost:8000`. If you change the backend port, update `API_URL` in `static/js/app.js`.
 
